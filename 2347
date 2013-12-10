@@ -1,0 +1,71 @@
+
+def unite(a,b):
+ result = []
+ for element in a:
+  result.append(element)
+ for element in b:
+  if element not in result:
+   result.append(element)
+ result.sort()
+ return result
+
+def subset(A,B):
+ value=1
+ for i in A:
+  if i not in B:
+   value=value*0
+ if value==0:
+  return False
+ else:
+  return True
+
+def difference(A,B):
+ result=[]
+ for j in A:
+  if not (j in B):
+   result.append(j)
+ return result
+
+def intersect(A,B):
+ result=[]
+ for i in A:
+  if i in B:
+   result.append(i)
+ return result
+
+def initialize(n):
+ p=[]
+ p.append([])
+ temp=[]
+ for i in range(1,n+1):
+  temp.append([i])
+ p.append(temp)
+ return p
+
+def levelup(p):
+# p=powerset(n)
+# for counter in range(2,l):
+#  p.append(level(n,counter))
+ temp=[]
+ for i in p[1]:
+  for j in p[len(p)-1]:
+   temp.append(unite(i,j))
+ result=[]
+ for term in temp:
+  if (not term in p[len(p)-1]) and (not term in result):
+   result.append(term)
+ p.append(result)
+ return p
+
+def powerset(n):
+ p=initialize(n)
+ for i in range(2,n+1):
+  levelup(p)
+ result=[[]]
+ for types in p:
+  for terms in types:
+   result.append(terms)
+ return result
+
+
+
